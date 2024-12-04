@@ -1,0 +1,8 @@
+
+
+premier partie: 
+
+open, 
+get next line juqu'a la fin
+creer ma struct avec chaque point.
+
