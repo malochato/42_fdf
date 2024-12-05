@@ -25,7 +25,7 @@ int calculate_zoom_with_image(t_matrix *matrix)
 {
     int cell_width = WIDTH / matrix->nb_col / 2;
     int cell_height = HEIGHT / matrix->nb_row / 2;
-	printf("1 = %d, 2 = %d\n", cell_width, cell_height);
+	//printf("1 = %d, 2 = %d\n", cell_width, cell_height);
 	if (cell_height <= cell_width)
     	return (cell_height);
 	else
@@ -38,14 +38,14 @@ void create_img(t_matrix *matrix, mlx_image_t *img)
 
 	matrix->zoom = calculate_zoom_with_image(matrix);
 
-	printf("col %d, row %d\n", matrix->nb_col, matrix->nb_row);
+	//printf("col %d, row %d\n", matrix->nb_col, matrix->nb_row);
 	iterate_matrix(matrix, NULL, multiplier_matrix);
 	iterate_matrix(matrix, img, ft_isometric);
 	//iterate_matrix(matrix, img, ft_top);
 	t_extremes	extremes;
 	extremes = find_matrix_extremes(matrix);
 	matrix->extremes = extremes;
-	print_extremes(extremes);
+	//print_extremes(extremes);
 	iterate_matrix(matrix, img, add_extrem_matrix);
 
 	iterate_matrix(matrix, img, connect_point);
@@ -67,11 +67,11 @@ int	create_display_windows(t_matrix *matrix)
 	if(!img ||(mlx_image_to_window(mlx, img, 0, 0 ) < 0))
 		exit(EXIT_FAILURE);
 	
-	print_map(matrix);
+	//print_map(matrix);
 	create_img(matrix, img);
 
 
-
+	mlx_put_string(mlx,"FDF",10, 10);
 
 	mlx_loop(mlx);
 	mlx_terminate(mlx);

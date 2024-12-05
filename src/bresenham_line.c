@@ -72,8 +72,8 @@ void draw_bresenham_line(t_point p0, t_point p1, mlx_image_t *img) {
     init(&bres, p0, p1);
 
     if (bres.dx > bres.dy) {
-        draw_low_slope(bres, img, 0xFFFFFFFF);
+        draw_low_slope(bres, img, p1.color);
     } else {
-        draw_high_slope(bres, img, 0xFFFFFFFF);
+        draw_high_slope(bres, img, p1.color);
     }
 }

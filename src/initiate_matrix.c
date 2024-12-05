@@ -100,15 +100,15 @@ t_matrix *init_map(char *map_name)
 
 void free_matrix(t_matrix *matrix)
 {
-	int i;
+	int x;
 
 	if (matrix == NULL)
         return;
-	i = 0;
-	while(i < matrix->nb_row)
+	x = 0;
+	while(x < matrix->nb_row)
     {
-        free(matrix->map[i]);
-		i++;
+        free(matrix->map[x]);
+		x++;
 	}
     free(matrix->map);
     free(matrix);

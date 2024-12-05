@@ -35,6 +35,8 @@ char **get_all_line(int fd)
 	return (lines);
 }
 
+
+
 void free_split(char **lines)
 {
 	int i; 
@@ -46,6 +48,41 @@ void free_split(char **lines)
 		i++;
 	}
 	free(lines);
+}
+
+
+int extract_color(char *str)
+{
+	char	**colors;
+	int 	color;
+	char	*color_str;
+	int		len;
+
+	colors = ft_split(str, ',');
+	if (colors[1])
+    {
+        color_str = colors[1] + 2;
+        len = ft_strlen(color_str);
+
+        // Compléter la couleur avec des zéros à gauche si nécessaire
+        if (len == 2) // 0xFF -> 0xFF000000
+            color = ft_atoi_base(color_str, 16) << 24;
+        else if (len == 4) // 0xFFFF -> 0xFFFF0000
+            color = ft_atoi_base(color_str, 16) << 16;
+        else if (len == 6) // 0xFFFFFF -> 0xFFFFFF00
+            color = ft_atoi_base(color_str, 16) << 8;
+        else if (len == 8) // 0xFFFFFFFF
+            color = ft_atoi_base(color_str, 16);
+        else
+        {
+            printf("Invalid color length: %d\n", len);
+            color = 0; // Invalid color
+        }
+    }
+	else
+		color = 0xffffffff;
+	free_split(colors);
+	return (color);
 }
 
 void populate_map(t_matrix *matrix, char **lines)
@@ -65,6 +102,8 @@ void populate_map(t_matrix *matrix, char **lines)
 			matrix->map[y][x].x = x;
 			matrix->map[y][x].y = y;
 			matrix->map[y][x].z = ft_atoi(row[x]);
+			matrix->map[y][x].color = extract_color(row[x]);
+			printf("color = %x\n", matrix->map[y][x].color);
 			x++;
 		}
 		if (x != matrix->nb_col)
@@ -88,7 +127,7 @@ void print_map(t_matrix *matrix)
 		y = 0;
         while(y < matrix->nb_col)
 		{
-			printf("%d ", matrix->map[x][y].z);	
+			printf("%x ", matrix->map[x][y].color);	
 			y++;
 		}
 		printf("\n");
@@ -117,4 +156,5 @@ t_matrix *extract_points_map(char *map_name)
 	free_split(lines);
 	return(matrix);
 }
+
 
