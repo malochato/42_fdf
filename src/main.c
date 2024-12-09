@@ -6,35 +6,35 @@
 /*   By: malde-ch <malo@chato.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:05:51 by malde-ch          #+#    #+#             */
-/*   Updated: 2024/11/24 19:12:16 by malde-ch         ###   ########.fr       */
+/*   Updated: 2024/12/10 06:50:31 by malde-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-
-
-
-void print_extremes(t_extremes extremes)
+void	print_extremes(t_extremes extremes)
 {
-    printf("Min X: %d, Max X: %d\n", extremes.min_x, extremes.max_x);
-    printf("Min Y: %d, Max Y: %d\n", extremes.min_y, extremes.max_y);
+	printf("Min X: %d, Max X: %d\n", extremes.min_x, extremes.max_x);
+	printf("Min Y: %d, Max Y: %d\n", extremes.min_y, extremes.max_y);
 }
 
-int calculate_zoom_with_image(t_matrix *matrix) 
+int	calculate_zoom_with_image(t_matrix *matrix)
 {
-    int cell_width = WIDTH / matrix->nb_col / 2;
-    int cell_height = HEIGHT / matrix->nb_row / 2;
+	int	cell_width;
+	int	cell_height;
+
+	cell_width = WIDTH / matrix->nb_col / 2;
+	cell_height = HEIGHT / matrix->nb_row / 2;
 	//printf("1 = %d, 2 = %d\n", cell_width, cell_height);
 	if (cell_height <= cell_width)
-    	return (cell_height);
+		return (cell_height);
 	else
 		return (cell_width);
 }
 
-void create_img(t_matrix *matrix, mlx_image_t *img)
+void	create_img(t_matrix *matrix, mlx_image_t *img)
 {
-
+	t_extremes	extremes;
 
 	matrix->zoom = calculate_zoom_with_image(matrix);
 
@@ -42,7 +42,7 @@ void create_img(t_matrix *matrix, mlx_image_t *img)
 	iterate_matrix(matrix, NULL, multiplier_matrix);
 	iterate_matrix(matrix, img, ft_isometric);
 	//iterate_matrix(matrix, img, ft_top);
-	t_extremes	extremes;
+
 	extremes = find_matrix_extremes(matrix);
 	matrix->extremes = extremes;
 	//print_extremes(extremes);
@@ -54,10 +54,9 @@ void create_img(t_matrix *matrix, mlx_image_t *img)
 
 int	create_display_windows(t_matrix *matrix)
 {
-	mlx_t 		*mlx;
+	mlx_t		*mlx;
 	mlx_image_t	*img;
 
-	
 	mlx = mlx_init(WIDTH, HEIGHT, " 🇪🇸 FDF 🇫🇷", false);
 	if (!mlx)
 		exit(EXIT_FAILURE);
@@ -66,7 +65,7 @@ int	create_display_windows(t_matrix *matrix)
 	img = mlx_new_image(mlx, HEIGHT, WIDTH);
 	if(!img ||(mlx_image_to_window(mlx, img, 0, 0 ) < 0))
 		exit(EXIT_FAILURE);
-	
+
 	//print_map(matrix);
 	create_img(matrix, img);
 
@@ -75,13 +74,13 @@ int	create_display_windows(t_matrix *matrix)
 
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
-	return 1;
+	return (1);
 }
 
 
 int	main(int argc, char **argv)
 {
-	t_matrix *matrix;
+	t_matrix	*matrix;
 
 	if (argc != 2)
 		return (1);
