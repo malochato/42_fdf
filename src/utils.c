@@ -6,7 +6,7 @@
 /*   By: malde-ch <malo@chato.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:34:41 by malde-ch          #+#    #+#             */
-/*   Updated: 2024/12/10 06:05:33 by malde-ch         ###   ########.fr       */
+/*   Updated: 2024/12/30 08:46:16 by malde-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 void	set_pixel(mlx_image_t* img, int x, int y, uint32_t color)
 {
 	if (x >= 0 && x < (int)img->width && y >= 0 && y < (int)img->height)
+	{
+		//printf("colors in set pixel = %08x\n", color);
 		((uint32_t*)img->pixels)[x * img->width + y] = color;
+	}
 }
 
 void	error_exit(char *message)
 {
-
 	perror(message);
 	exit(EXIT_FAILURE);
 }

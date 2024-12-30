@@ -6,7 +6,7 @@
 /*   By: malde-ch <malo@chato.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:03:31 by malde-ch          #+#    #+#             */
-/*   Updated: 2024/11/24 17:18:17 by malde-ch         ###   ########.fr       */
+/*   Updated: 2024/12/30 08:39:06 by malde-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct	s_point
 	int	z;
     int proj_x;
     int proj_y;
-	int	color;
+	uint32_t	color;
 }	t_point;
 
 typedef struct s_matrix

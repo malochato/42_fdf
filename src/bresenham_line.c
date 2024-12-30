@@ -6,7 +6,7 @@
 /*   By: malde-ch <malo@chato.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 17:07:22 by malde-ch          #+#    #+#             */
-/*   Updated: 2024/12/10 06:56:50 by malde-ch         ###   ########.fr       */
+/*   Updated: 2024/12/30 11:44:18 by malde-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	init(t_bresenham *bresenham, t_point p0, t_point p1)
 }
 
 
-void	draw_low_slope(t_bresenham bres, mlx_image_t *img, int color)
+void	draw_low_slope(t_bresenham bres, mlx_image_t *img, uint32_t color)
 {
 	int	i;
 
@@ -52,7 +52,7 @@ void	draw_low_slope(t_bresenham bres, mlx_image_t *img, int color)
 	}
 }
 
-void	draw_high_slope(t_bresenham bres, mlx_image_t *img, int color)
+void	draw_high_slope(t_bresenham bres, mlx_image_t *img, uint32_t color)
 {
 	int	i;
 

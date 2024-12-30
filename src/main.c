@@ -6,7 +6,7 @@
 /*   By: malde-ch <malo@chato.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:05:51 by malde-ch          #+#    #+#             */
-/*   Updated: 2024/12/10 06:50:31 by malde-ch         ###   ########.fr       */
+/*   Updated: 2024/12/14 05:53:58 by malde-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	calculate_zoom_with_image(t_matrix *matrix)
 
 	cell_width = WIDTH / matrix->nb_col / 2;
 	cell_height = HEIGHT / matrix->nb_row / 2;
-	//printf("1 = %d, 2 = %d\n", cell_width, cell_height);
+	printf("1 = %d, 2 = %d\n", cell_width, cell_height);
 	if (cell_height <= cell_width)
 		return (cell_height);
 	else
@@ -89,7 +89,7 @@ int	main(int argc, char **argv)
 	create_display_windows(matrix);
 
 
-
+		
 	free_matrix(matrix);
 	return (0);
 }

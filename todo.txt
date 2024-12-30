@@ -32,6 +32,7 @@ POUR PUSH SWAP
 -->calculer le nombre max de bit shift que l'on doit faire 
 -->mettre les 0 dans le B
 -->laisser les 1 dans A
+(ca fonctionnerais aussi si on choisit de mettre les 0 ou 1 en fonctions de leur nombre non ?)
 -->ensuite remmetre les B dans A
 --> REPETER
 -->avoir une fonction check if valid et l'activer.

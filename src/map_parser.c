@@ -6,7 +6,7 @@
 /*   By: malde-ch <malo@chato.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:34:48 by malde-ch          #+#    #+#             */
-/*   Updated: 2024/12/10 06:02:39 by malde-ch         ###   ########.fr       */
+/*   Updated: 2024/12/30 11:47:56 by malde-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,39 +51,64 @@ void	free_split(char **lines)
 }
 
 
-int	extract_color(char *str)
+/* uint32_t	extract_color(char *str)
 {
 	char	**colors;
-	char	*color_str;
-	int		len;
-	int		color;
+	uint32_t	color;
 
 	colors = ft_split(str, ',');
 	if (colors[1])
 	{
-		color_str = colors[1] + 2;
-		len = ft_strlen(color_str);
+		color = ft_atoi_base(colors[1] + 2, 16);
+	}
+	else
+		color = 0xffffffff;
+
+	free_split(colors);
+	return (color);
+} */
+
+uint32_t	extract_color(char *str)
+{
+	char	**colors;
+	char	*color_str;
+	int		len;
+	uint32_t	color;
+
+	colors = ft_split(str, ',');
+	if (colors[1])
+	{
+		len = ft_strlen(colors[1] + 2);
+		if (len == 2)
+			color_str = ft_strjoin("ff0000", colors[1] + 2);
+		else if (len == 4)
+			color_str = ft_strjoin("ff00", colors[1] + 2);
+		else if (len == 6)
+			color_str = ft_strjoin("ff", colors[1] + 2);
+		/* else if (len == 8)
+		color_str = ft_strjoin("ff", (colors[1] + 2)); */
 		printf("len = %d\n", len);
 
-		if (len == 2)
-			color = ft_atoi_base(color_str, 16) << 24 | 0x000000ff;
-		else if (len == 4)
-			color = ft_atoi_base(color_str, 16) << 16 | 0x000000ff;
-		else if (len == 6)
-			color = ft_atoi_base(color_str, 16) << 8 | 0x000000ff;
-		else if (len == 8)
-			color = ft_atoi_base(color_str, 16);
-		else
-		{
-			printf("Invalid color length: %d\n", len);
-			color = 0;
-		}
+		color = ft_atoi_base(color_str, 16);
 	}
 	else
 		color = 0xffffffff;
 	free_split(colors);
+	free(color_str);
+
+	/* printf("color = %x\n", color);
+	printf("color = %08x\n", color); */
 	return (color);
 }
+
+
+
+
+/* char int  0011 0011 0011 0100
+int  0010 0010 */
+
+
+
 
 void	populate_map(t_matrix *matrix, char **lines)
 {
@@ -102,7 +127,7 @@ void	populate_map(t_matrix *matrix, char **lines)
 			matrix->map[y][x].y = y;
 			matrix->map[y][x].z = ft_atoi(row[x]);
 			matrix->map[y][x].color = extract_color(row[x]);
-			printf("color = %x\n", matrix->map[y][x].color);
+			printf("color = %08x\n", matrix->map[y][x].color);
 			x++;
 		}
 		if (x != matrix->nb_col)

@@ -6,7 +6,7 @@
 /*   By: malde-ch <malo@chato.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 15:51:17 by malde-ch          #+#    #+#             */
-/*   Updated: 2024/12/10 07:05:44 by malde-ch         ###   ########.fr       */
+/*   Updated: 2024/12/14 05:46:51 by malde-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	connect_point(t_matrix *matrix, mlx_image_t *img, int x, int y)
 	if (y + 1 < matrix->nb_col)
 		draw_bresenham_line(matrix->map[x][y + 1], matrix->map[x][y], img);
 }
-
 
 
 void	ft_isometric(t_matrix *matrix, mlx_image_t *img, int x, int y)
