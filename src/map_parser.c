@@ -6,7 +6,7 @@
 /*   By: malde-ch <malo@chato.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:34:48 by malde-ch          #+#    #+#             */
-/*   Updated: 2024/12/30 11:47:56 by malde-ch         ###   ########.fr       */
+/*   Updated: 2024/12/30 12:03:34 by malde-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,12 @@ uint32_t	extract_color(char *str)
 		printf("len = %d\n", len);
 
 		color = ft_atoi_base(color_str, 16);
+		free(color_str);
 	}
 	else
 		color = 0xffffffff;
+
 	free_split(colors);
-	free(color_str);
 
 	/* printf("color = %x\n", color);
 	printf("color = %08x\n", color); */

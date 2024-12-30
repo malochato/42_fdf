@@ -1,2 +1,5 @@
 *.o
 *.swp
+*.a
+build/
+fdf
