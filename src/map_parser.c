@@ -6,7 +6,7 @@
 /*   By: malde-ch <malo@chato.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:34:48 by malde-ch          #+#    #+#             */
-/*   Updated: 2024/12/30 12:03:34 by malde-ch         ###   ########.fr       */
+/*   Updated: 2024/12/30 12:26:28 by malde-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ uint32_t	extract_color(char *str)
 	{
 		len = ft_strlen(colors[1] + 2);
 		if (len == 2)
-			color_str = ft_strjoin("ff0000", colors[1] + 2);
+			color_str = ft_strjoin(ft_strjoin("ff", colors[1] + 2), "0000");
 		else if (len == 4)
 			color_str = ft_strjoin("ff00", colors[1] + 2);
 		else if (len == 6)
@@ -91,6 +91,8 @@ uint32_t	extract_color(char *str)
 
 		color = ft_atoi_base(color_str, 16);
 		free(color_str);
+
+		//colors = 0xff | (red << 16) | (green << 8) | blue;
 	}
 	else
 		color = 0xffffffff;
