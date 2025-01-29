@@ -6,7 +6,7 @@
 /*   By: malde-ch <malo@chato.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 17:07:22 by malde-ch          #+#    #+#             */
-/*   Updated: 2024/12/30 11:44:18 by malde-ch         ###   ########.fr       */
+/*   Updated: 2025/01/29 02:05:24 by malde-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	draw_low_slope(t_bresenham bres, mlx_image_t *img, uint32_t color)
 		bres.x0 += bres.sx;
 		bres.err += 2 * bres.dy;
 		i++;
+		//printf("i = %d < x = %d\n", i, bres.dx);
 	}
 }
 

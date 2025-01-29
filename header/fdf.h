@@ -6,7 +6,7 @@
 /*   By: malde-ch <malo@chato.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:03:31 by malde-ch          #+#    #+#             */
-/*   Updated: 2024/12/30 08:39:06 by malde-ch         ###   ########.fr       */
+/*   Updated: 2025/01/29 00:39:26 by malde-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ typedef struct	s_point
 	int	y;
 	int	z;
     int proj_x;
-    int proj_y;
-	uint32_t	color;
+    int	proj_y;
+	int	color;
 }	t_point;
 
 typedef struct s_matrix
@@ -99,5 +99,9 @@ void multiplier_matrix(t_matrix *matrix, mlx_image_t *img, int x, int y);
 
 t_extremes find_matrix_extremes(t_matrix *matrix);
 void add_extrem_matrix(t_matrix *matrix, mlx_image_t *img, int x, int y);
+
+
+uint32_t	get_color(t_point p0, t_point p1, t_point current);
+
 
 #endif
