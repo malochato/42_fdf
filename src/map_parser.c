@@ -91,7 +91,6 @@ void	populate_map(t_matrix *matrix, char **lines)
 			matrix->map[y][x].y = y;
 			matrix->map[y][x].z = ft_atoi(row[x]);
 			matrix->map[y][x].color = extract_color(row[x]);
-			printf("color = %x\n", matrix->map[y][x].color);	
 			x++;
 		}
 		if (x != matrix->nb_col)

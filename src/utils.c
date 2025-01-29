@@ -15,10 +15,7 @@
 void	set_pixel(mlx_image_t* img, int x, int y, uint32_t color)
 {
 	if (x >= 0 && x < (int)img->width && y >= 0 && y < (int)img->height)
-	{
-		//printf("colors in set pixel = %08x\n", color);
 		((uint32_t*)img->pixels)[x * img->width + y] = color;
-	}
 }
 
 void	error_exit(char *message)

@@ -37,6 +37,16 @@ typedef struct s_extremes
 }   t_extremes;
 
 
+typedef struct s_image
+{
+    mlx_t       *mlx;
+    mlx_image_t *img;
+    int         img_x;
+    int         img_y;
+    int         img_width;
+    int         img_height;
+}   t_image;
+// eso es nuevo a trabajar manana
 
 
 typedef struct	s_point
@@ -101,7 +111,7 @@ t_extremes find_matrix_extremes(t_matrix *matrix);
 void add_extrem_matrix(t_matrix *matrix, mlx_image_t *img, int x, int y);
 
 
-uint32_t	get_color(t_point p0, t_point p1, t_point current);
+uint32_t	get_color(t_point p0, t_point p1, int pourcentage);
 
 
 #endif

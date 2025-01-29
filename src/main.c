@@ -38,19 +38,39 @@ void	create_img(t_matrix *matrix, mlx_image_t *img)
 
 	matrix->zoom = calculate_zoom_with_image(matrix);
 
-	//printf("col %d, row %d\n", matrix->nb_col, matrix->nb_row);
 	iterate_matrix(matrix, NULL, multiplier_matrix);
 	iterate_matrix(matrix, img, ft_isometric);
-	//iterate_matrix(matrix, img, ft_top);
 
 	extremes = find_matrix_extremes(matrix);
 	matrix->extremes = extremes;
-	//print_extremes(extremes);
 	iterate_matrix(matrix, img, add_extrem_matrix);
 
 	iterate_matrix(matrix, img, connect_point);
-	//iterate_matrix(matrix, img, place_point);
 }
+
+void my_loop_function(void *param)
+{
+	(void)param;	
+	printf("loop\n");
+}
+
+void handle_key(mlx_key_data_t keydata, void *param)
+{
+    mlx_t *mlx;
+	mlx = (mlx_t *)param;
+    //printf("Key pressed: %d\n", keydata.key);
+    if (keydata.key == MLX_KEY_ESCAPE)
+	{
+        exit(0);
+	}
+	if (keydata.key == MLX_KEY_D)
+	{
+		printf("D\n");
+	}
+	if (keydata.key == MLX_KEY_A)
+		printf("A\n");
+}
+
 
 int	create_display_windows(t_matrix *matrix)
 {
@@ -63,14 +83,19 @@ int	create_display_windows(t_matrix *matrix)
 	(void)matrix;
 
 	img = mlx_new_image(mlx, HEIGHT, WIDTH);
+
+	create_img(matrix, img);
+
 	if(!img ||(mlx_image_to_window(mlx, img, 0, 0 ) < 0))
 		exit(EXIT_FAILURE);
 
 	//print_map(matrix);
-	create_img(matrix, img);
 
+	//mlx_delete_image(mlx, img);
 
 	mlx_put_string(mlx,"FDF",10, 10);
+
+	mlx_key_hook(mlx, handle_key, img);
 
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
@@ -93,3 +118,5 @@ int	main(int argc, char **argv)
 	free_matrix(matrix);
 	return (0);
 }
+
+
