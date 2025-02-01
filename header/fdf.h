@@ -6,7 +6,7 @@
 /*   By: malde-ch <malo@chato.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:03:31 by malde-ch          #+#    #+#             */
-/*   Updated: 2025/01/29 00:39:26 by malde-ch         ###   ########.fr       */
+/*   Updated: 2025/02/01 00:33:14 by malde-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 #include "MLX42/MLX42.h"
 #include <math.h>
+#include <limits.h>
 
 
 #define WIDTH 1600
@@ -37,15 +38,7 @@ typedef struct s_extremes
 }   t_extremes;
 
 
-typedef struct s_image
-{
-    mlx_t       *mlx;
-    mlx_image_t *img;
-    int         img_x;
-    int         img_y;
-    int         img_width;
-    int         img_height;
-}   t_image;
+
 // eso es nuevo a trabajar manana
 
 
@@ -67,6 +60,17 @@ typedef struct s_matrix
 	t_point **map;
     t_extremes extremes;
 }	t_matrix;
+
+typedef struct s_image
+{
+    mlx_t       *mlx;
+    mlx_image_t *img;
+    int         img_x;
+    int         img_y;
+    int         img_width;
+    int         img_height;
+	t_matrix	*matrix;
+}   t_image;
 
 typedef struct s_bresenham
 {

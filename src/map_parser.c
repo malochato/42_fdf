@@ -6,7 +6,7 @@
 /*   By: malde-ch <malo@chato.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:34:48 by malde-ch          #+#    #+#             */
-/*   Updated: 2025/01/29 02:24:32 by malde-ch         ###   ########.fr       */
+/*   Updated: 2025/02/01 00:19:05 by malde-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,10 @@ void	populate_map(t_matrix *matrix, char **lines)
 		row = ft_split(lines[y], ' ');
 		while (row[x])
 		{
-			matrix->map[y][x].x = x;
-			matrix->map[y][x].y = y;
-			matrix->map[y][x].z = ft_atoi(row[x]);
-			matrix->map[y][x].color = extract_color(row[x]);
+			matrix->map[x][y].x = x;
+			matrix->map[x][y].y = y;
+			matrix->map[x][y].z = ft_atoi(row[x]);
+			matrix->map[x][y].color = extract_color(row[x]);
 			x++;
 		}
 		if (x != matrix->nb_col)
@@ -109,10 +109,10 @@ void	print_map(t_matrix *matrix)
 	int	y;
 
 	x = 0;
-	while (x < matrix->nb_row)
+	while (x < matrix->nb_col)
 	{
 		y = 0;
-		while (y < matrix->nb_col)
+		while (y < matrix->nb_row)
 		{
 			printf("%x ", matrix->map[x][y].color);	
 			y++;

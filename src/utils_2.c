@@ -6,7 +6,7 @@
 /*   By: malde-ch <malo@chato.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 15:51:17 by malde-ch          #+#    #+#             */
-/*   Updated: 2024/12/14 05:46:51 by malde-ch         ###   ########.fr       */
+/*   Updated: 2025/02/01 00:29:27 by malde-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	iterate_matrix(t_matrix *matrix, mlx_image_t *img, \
 		}
 		x++;
 	}
-	ft_printf("max y = %d et nb_col = %d\n",y, matrix->nb_col);
+	/* ft_printf("max y = %d et nb_col = %d\n",y, matrix->nb_col);
 	ft_printf("max x = %d et nb_row = %d\n",x, matrix->nb_row);
-
+ */
 }
 
 void	multiplier_matrix(t_matrix *matrix, mlx_image_t *img, int x, int y)
@@ -69,15 +69,9 @@ void	ft_isometric(t_matrix *matrix, mlx_image_t *img, int x, int y)
 	int offset_x = 0;      // Décalage horizontal
 	int offset_y = 0;      // Décalage vertical
 
-	// matrix->map[x][y].proj_y = (temp_x - temp_y) * cos(angle) + offset_x;
-	// matrix->map[x][y].proj_x = (temp_x + temp_y) * sin(angle) - temp_z + offset_y;
-
-	matrix->map[x][y].proj_x = (temp_y - temp_x) * sin(angle) - temp_z + offset_y;
-	matrix->map[x][y].proj_y = (temp_x + temp_y) * cos(angle) + offset_x;
-
-	//matrix->map[x][y].proj_y = (temp_x - temp_y) * COS_30 + offset_x;
-	//matrix->map[x][y].proj_x = (temp_x + temp_y) * SIN_30 - temp_z + offset_y;
-
+	matrix->map[x][y].proj_x = (temp_x - temp_y) * cos(angle) + offset_y;
+	matrix->map[x][y].proj_y = (temp_x + temp_y) * sin(angle) - temp_z + offset_x;
+	
 	(void)img;
 }
 
