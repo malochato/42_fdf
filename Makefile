@@ -2,7 +2,8 @@ NAME = fdf
 LIBFT = libft.a
 
 SRC_DIR = ./src
-SRC_FILES =	bresenham_line.c \
+SRC_FILES =	color.c \
+			bresenham_line.c \
 			initiate_matrix.c \
 			map_parser.c \
 			utils.c \

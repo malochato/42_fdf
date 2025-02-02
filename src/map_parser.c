@@ -35,21 +35,6 @@ char	**get_all_line(int fd)
 	return (lines);
 }
 
-
-
-void	free_split(char **lines)
-{
-	int	i; 
-
-	i = 0;
-	while (lines[i] != NULL)
-	{
-		free(lines[i]);
-		i++;
-	}
-	free(lines);
-}
-
 int	extract_color(char *str)
 {
 	char	**colors;
@@ -65,14 +50,28 @@ int	extract_color(char *str)
 		return (0xFFFFFFFF);
 	}
 	color = ft_atoi_base(colors[1] + 2, 16);
-    red = (color >> 16) & 0xFF;
-    green = (color >> 8) & 0xFF;
-    blue = color & 0xFF;
-    color = (0xFF << 24) | (blue << 16) | (green << 8) | red;
-    free_split(colors);
-    return (color);
+	blue = (color >> 16) & 0xFF;
+	green = (color >> 8) & 0xFF;
+	red = color & 0xFF;
+	color = (0xFF << 24) | (red << 16) | (green << 8) | blue;
+	free_split(colors);
+	return (color);
 }
 
+void	handle_invalid_col(t_matrix *matrix, char **row, char **lines, int x)
+{
+	ft_putstr_fd("Number of columns is not always the same\n", 2);
+	free_split(row);
+	free_split(lines);
+	while (x >= 0)
+	{
+		free(matrix->map[x]);
+		x--;
+	}
+	free(matrix->map);
+	free(matrix);
+	exit(EXIT_FAILURE);
+}
 
 void	populate_map(t_matrix *matrix, char **lines)
 {
@@ -81,7 +80,7 @@ void	populate_map(t_matrix *matrix, char **lines)
 	int		y;
 
 	y = 0;
-	while (y < matrix->nb_row)
+	while (y < matrix->nb_line)
 	{
 		x = 0;
 		row = ft_split(lines[y], ' ');
@@ -94,33 +93,10 @@ void	populate_map(t_matrix *matrix, char **lines)
 			x++;
 		}
 		if (x != matrix->nb_col)
-		{
-			ft_printf("Number of colum is not always the same\n");
-			exit(EXIT_FAILURE);
-		}	// a mieux faire et expliquer que la map est pas bonne
+			handle_invalid_col(matrix, row, lines, x);
 		free_split(row);
 		y++;
 	}
-}
-
-void	print_map(t_matrix *matrix)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < matrix->nb_col)
-	{
-		y = 0;
-		while (y < matrix->nb_row)
-		{
-			printf("%x ", matrix->map[x][y].color);	
-			y++;
-		}
-		printf("\n");
-		x++;
-	}
-	printf("\n");
 }
 
 t_matrix	*extract_points_map(char *map_name)
@@ -131,13 +107,9 @@ t_matrix	*extract_points_map(char *map_name)
 
 	fd = open_file(map_name);
 	lines = get_all_line(fd);
-
 	matrix = init_map(map_name);
 	populate_map(matrix, lines);
-
 	close(fd);
 	free_split(lines);
 	return (matrix);
 }
-
-

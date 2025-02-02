@@ -20,8 +20,8 @@
 #include <limits.h>
 
 
-#define WIDTH 1600
-#define HEIGHT 1300
+#define WIDTH 1700
+#define HEIGHT 1350
 
 
 
@@ -39,8 +39,6 @@ typedef struct s_extremes
 
 
 
-// eso es nuevo a trabajar manana
-
 
 typedef struct	s_point
 {
@@ -55,22 +53,19 @@ typedef struct	s_point
 typedef struct s_matrix
 {
 	int 	nb_col;
-	int 	nb_row;
+	int 	nb_line;
     int     zoom;
 	t_point **map;
     t_extremes extremes;
 }	t_matrix;
 
-typedef struct s_image
+
+typedef struct s_display
 {
-    mlx_t       *mlx;
-    mlx_image_t *img;
-    int         img_x;
-    int         img_y;
-    int         img_width;
-    int         img_height;
-	t_matrix	*matrix;
-}   t_image;
+	mlx_image_t	*img;
+	mlx_t		*mlx;
+    t_matrix    *matrix;
+}				t_display;
 
 typedef struct s_bresenham
 {
@@ -98,15 +93,12 @@ void free_matrix(t_matrix *matrix);
 void    draw_bresenham_line(t_point p0 , t_point p1, mlx_image_t *img);
 
 
-void    print_map(t_matrix *matrix);
 
 
 void iterate_matrix(t_matrix *matrix, mlx_image_t *img, void (*f)(t_matrix *, mlx_image_t *, int, int));
 
-void place_point(t_matrix *matrix, mlx_image_t *img, int x, int y);
 void connect_point(t_matrix *matrix, mlx_image_t *img, int x, int y);
 void ft_isometric(t_matrix *matrix, mlx_image_t *img, int x, int y);
-void ft_top(t_matrix *matrix, mlx_image_t *img, int x, int y);
 void multiplier_matrix(t_matrix *matrix, mlx_image_t *img, int x, int y);
 
 
@@ -115,7 +107,11 @@ t_extremes find_matrix_extremes(t_matrix *matrix);
 void add_extrem_matrix(t_matrix *matrix, mlx_image_t *img, int x, int y);
 
 
-uint32_t	get_color(t_point p0, t_point p1, int pourcentage);
+uint32_t get_gradient(uint32_t color1, uint32_t color2, float ratio);
 
+void	free_split(char **lines);
+void	free_display(t_display *display);
+
+int	calculate_zoom_with_image(t_matrix *matrix);
 
 #endif

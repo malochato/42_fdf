@@ -12,9 +12,9 @@
 
 #include "fdf.h"
 
-int	get_nbr_row(char *map_name)
+int	get_nbr_line(char *map_name)
 {
-	int		fd; 
+	int		fd;
 	int		y;	
 	char	*line;
 
@@ -43,7 +43,7 @@ int	get_nbr_col(char *map_name)
 	line = get_next_line(fd);
 	points = ft_split(line, ' ');
 	x = 0;
-	while (points[x] != NULL && ft_strncmp(points[x],"\n", 1))
+	while (points[x] != NULL && ft_strncmp(points[x], "\n", 1))
 		x++;
 	i = 0;
 	while (points[i] != NULL)
@@ -59,42 +59,34 @@ int	get_nbr_col(char *map_name)
 
 t_matrix	*init_map(char *map_name)
 {
-	int			rows;
+	int			lines;
 	int			cols;
 	int			i;
 	t_point		**map;
 	t_matrix	*matrix;
 
-
 	matrix = malloc(sizeof(t_matrix));
-
 	cols = get_nbr_col(map_name);
-	rows = get_nbr_row(map_name);
-
-	map = (t_point **)malloc(sizeof(t_point *) * rows);
+	lines = get_nbr_line(map_name);
+	map = (t_point **)malloc(sizeof(t_point *) * cols);
 	if (!map)
-	{
 		exit(EXIT_FAILURE);
-	}
 	i = 0;
-	while (i < rows)
+	while (i < cols)
 	{
-		map[i] = (t_point *)malloc(sizeof(t_point) * cols);
+		map[i] = (t_point *)malloc(sizeof(t_point) * lines);
 		if (!map[i])
 		{
 			while (--i >= 0)
-			{
 				free(map[i]);
-			}
 			free(map);
 			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
 	matrix->nb_col = cols;
-	matrix->nb_row = rows;
+	matrix->nb_line = lines;
 	matrix->map = map;
-
 	return (matrix);
 }
 
@@ -105,7 +97,7 @@ void	free_matrix(t_matrix *matrix)
 	if (matrix == NULL)
 		return ;
 	x = 0;
-	while (x < matrix->nb_row)
+	while (x < matrix->nb_col)
 	{
 		free(matrix->map[x]);
 		x++;
@@ -113,4 +105,3 @@ void	free_matrix(t_matrix *matrix)
 	free(matrix->map);
 	free(matrix);
 }
-
