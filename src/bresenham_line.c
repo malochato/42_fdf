@@ -28,7 +28,8 @@ static void	init(t_bresenham *bresenham, t_point p0, t_point p1)
 		bresenham->sy = -1;
 }
 
-void	draw_low_slope(t_bresenham bres, mlx_image_t *img, uint32_t p0_color, uint32_t p1_color)
+void	draw_low_slope(t_bresenham bres, mlx_image_t *img, \
+		uint32_t p0_color, uint32_t p1_color)
 {
 	int	i;
 
@@ -36,7 +37,8 @@ void	draw_low_slope(t_bresenham bres, mlx_image_t *img, uint32_t p0_color, uint3
 	bres.err = 2 * bres.dy - bres.dx;
 	while (i <= bres.dx + 1)
 	{
-		set_pixel(img, bres.x0, bres.y0, get_gradient(p0_color, p1_color, (float)i / bres.dx));
+		set_pixel(img, bres.x0, bres.y0, \
+		get_gradient(p0_color, p1_color, (float)i / bres.dx));
 		if (bres.err > 0)
 		{
 			bres.y0 += bres.sy;
@@ -48,7 +50,8 @@ void	draw_low_slope(t_bresenham bres, mlx_image_t *img, uint32_t p0_color, uint3
 	}
 }
 
-void	draw_high_slope(t_bresenham bres, mlx_image_t *img, int p0_color, int p1_color)
+void	draw_high_slope(t_bresenham bres, mlx_image_t *img, \
+		int p0_color, int p1_color)
 {
 	int	i;
 

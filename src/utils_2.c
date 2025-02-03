@@ -52,14 +52,12 @@ void	ft_isometric(t_matrix *matrix, mlx_image_t *img, int x, int y)
 	int		temp_x;
 	int		temp_y;
 	int		temp_z;
-	double	angle;
 
 	temp_x = matrix->map[x][y].x;
 	temp_y = matrix->map[x][y].y;
 	temp_z = matrix->map[x][y].z;
-	angle = 3.141592 / 6;
-	matrix->map[x][y].proj_x = (temp_y + temp_x) * cos(angle);
-	matrix->map[x][y].proj_y = (temp_y - temp_x) * sin(angle) - temp_z;
+	matrix->map[x][y].proj_x = (temp_y + temp_x) * COS_30;
+	matrix->map[x][y].proj_y = (temp_y - temp_x) * SIN_30 - temp_z;
 	(void)img;
 }
 

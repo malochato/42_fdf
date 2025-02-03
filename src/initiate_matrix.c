@@ -59,22 +59,20 @@ int	get_nbr_col(char *map_name)
 
 t_matrix	*init_map(char *map_name)
 {
-	int			lines;
-	int			cols;
 	int			i;
 	t_point		**map;
 	t_matrix	*matrix;
 
 	matrix = malloc(sizeof(t_matrix));
-	cols = get_nbr_col(map_name);
-	lines = get_nbr_line(map_name);
-	map = (t_point **)malloc(sizeof(t_point *) * cols);
+	matrix->nb_col = get_nbr_col(map_name);
+	matrix->nb_line = get_nbr_line(map_name);
+	map = (t_point **)malloc(sizeof(t_point *) * matrix->nb_col);
 	if (!map)
 		exit(EXIT_FAILURE);
 	i = 0;
-	while (i < cols)
+	while (i < matrix->nb_col)
 	{
-		map[i] = (t_point *)malloc(sizeof(t_point) * lines);
+		map[i] = (t_point *)malloc(sizeof(t_point) * matrix->nb_line);
 		if (!map[i])
 		{
 			while (--i >= 0)
@@ -84,8 +82,6 @@ t_matrix	*init_map(char *map_name)
 		}
 		i++;
 	}
-	matrix->nb_col = cols;
-	matrix->nb_line = lines;
 	matrix->map = map;
 	return (matrix);
 }

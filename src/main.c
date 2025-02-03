@@ -53,13 +53,6 @@ void	handle_key(mlx_key_data_t keydata, void *param)
 		display->img->instances[0].y -= 5;
 	if (keydata.key == MLX_KEY_S)
 		display->img->instances[0].y += 5;
-	/* if (keydata.key == MLX_KEY_Z && keydata.action == MLX_PRESS)
-	{
-	    printf("zoom + %d\n", display->matrix->zoom);
-	    display->matrix->zoom += 1;
-		mlx_delete_image(display->mlx, display->img);
-		init_display(display);
-	} */
 }
 
 int	main(int argc, char **argv)

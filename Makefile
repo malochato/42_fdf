@@ -19,13 +19,13 @@ LIBMLX_BUILD = $(LIBMLX)/build
 LIBFT_PATH = ./lib/libft
 
 CC = cc
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g 
 RM = rm -rf
 OBJ = $(SRC:.c=.o)
 HEADER = ./header
 
 HEADERS = -I $(HEADER) -I $(LIBMLX)/include
-LIBS = $(LIBMLX_BUILD)/libmlx42.a -ldl -lglfw -pthread -lm -L $(LIBFT_PATH) -lft -fsanitize=address
+LIBS = $(LIBMLX_BUILD)/libmlx42.a -ldl -lglfw -pthread -lm -L $(LIBFT_PATH) -lft 
 
 all: libmlx $(NAME)
 
